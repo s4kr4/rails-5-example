@@ -24,3 +24,5 @@ doc/
 
 # Ignore Spring files.
 /spring/*.pid
+
+.byebug_history
