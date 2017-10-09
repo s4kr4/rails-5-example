@@ -26,3 +26,5 @@ doc/
 /spring/*.pid
 
 .byebug_history
+
+public/uploads
