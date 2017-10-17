@@ -27,4 +27,8 @@ class ActionDispatch::IntegrationTest
                               password: password,
                               remember_me: remember_me } }
   end
+
+  def l(date, format = :default)
+    I18n.l(date, format: format)
+  end
 end
