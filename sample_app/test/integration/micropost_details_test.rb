@@ -4,10 +4,12 @@ class MicropostDetailsTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = users(:michael)
+    @other_user = users(:archer)
     @micropost = microposts(:orange)
+    @others_micropost = microposts(:ants)
   end
 
-  test "micropost details with login" do
+  test "my micropost with login" do
     log_in_as(@user)
     get micropost_path(@micropost)
 
@@ -17,10 +19,30 @@ class MicropostDetailsTest < ActionDispatch::IntegrationTest
     assert_select 'a[href=?]', micropost_path(@micropost), text: 'delete'
   end
 
-  test "micropost details without login" do
+  test "my micropost without login" do
     get micropost_path(@micropost)
 
-    refute_match 'delete', response.body
+    assert_not response.body.include?(micropost_path(@micropost))
+  end
+
+  test "other micropost with login" do
+    log_in_as(@user)
+    get micropost_path(@others_micropost)
+
+    assert_not response.body.include?(micropost_path(@others_micropost))
+  end
+
+  test "other micropost without login" do
+    get micropost_path(@micropost)
+
+    assert_not response.body.include?(micropost_path(@micropost))
+  end
+
+  test "my micropost with login as other user" do
+    log_in_as(@other_user)
+    get micropost_path(@micropost)
+
+    assert_not response.body.include?(micropost_path(@micropost))
   end
 
 end
