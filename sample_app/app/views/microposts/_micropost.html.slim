@@ -7,7 +7,7 @@ li id='micropost-#{micropost.id}'
     = image_tag micropost.picture.url if micropost.picture?
   span.timestamp
     | Posted
-    =<> time_ago_in_words(micropost.created_at)
+    =<> link_to time_ago_in_words(micropost.created_at), micropost, method: :get
     | ago.
     - if current_user?(micropost.user)
       =< link_to 'delete', micropost, method: :delete, data: { confirm: 'You sure?' }
