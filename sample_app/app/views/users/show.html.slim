@@ -4,7 +4,7 @@
   aside.col-md-4
     section.user_info
       h1
-        = gravatar_for @user
+        = profile_image_for @user
         = @user.name
     section.stats
       = render 'shared/stats'
