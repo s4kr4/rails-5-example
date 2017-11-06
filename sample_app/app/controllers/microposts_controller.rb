@@ -23,6 +23,12 @@ class MicropostsController < ApplicationController
     @micropost = Micropost.find(params[:id])
   end
 
+  def timeline
+    micropost = Micropost.where(user_id: current_user.id)
+
+    render :json => micropost
+  end
+
   private
     def micropost_params
       params.require(:micropost).permit(:content, :picture)
