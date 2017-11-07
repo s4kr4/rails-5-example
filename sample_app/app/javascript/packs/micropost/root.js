@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 import axios from 'axios'
 
 import Micropost from './Micropost'
@@ -27,7 +28,7 @@ class Microposts extends Component {
       <div className="microposts">
         {
           this.state.data.map(d => (
-              <Micropost data={ d } />
+              <Micropost key={ d.id } data={ d } />
           ))
         }
       </div>
@@ -36,5 +37,7 @@ class Microposts extends Component {
 }
 
 ReactDOM.render((
-  <Microposts />
+  <BrowserRouter>
+    <Route path="/" component={ Microposts } />
+  </BrowserRouter>
 ), document.getElementById('micropost-root'))
