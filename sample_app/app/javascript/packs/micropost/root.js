@@ -28,7 +28,7 @@ class Microposts extends Component {
       <div className="microposts">
         {
           this.state.data.map(d => (
-              <Micropost key={ d.id } data={ d } />
+            <Micropost key={ d.id } data={ d } />
           ))
         }
       </div>
